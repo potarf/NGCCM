@@ -1,6 +1,9 @@
 #testThing.py
 import re
 
+################################################################################
+#                                Parse Params/Args                             #
+################################################################################
 def parseSequence(string):
     a = re.search("\((.+)\)", string)
     if a:
@@ -13,7 +16,11 @@ def parseSequence(string):
         return (b.group(1), params)
     else:
         return string
+################################################################################
 
+################################################################################
+#                                   Setup                                      #
+################################################################################
 definedSequences = dict()
 
 infile = open('testFile.txt', 'r')
@@ -39,14 +46,11 @@ while i < len(lines):
 
 commandList = []
 
-
-
-
 #execute sequences and commands
 while i < len(lines):
     line = lines[i]
     if len(line) >= 2:
-        if re.match('SW | SR | CW | CR | P', line):
+        if re.match('SW | SR | CW | CR | P | EQ', line):
             commandList.append(line[:-2])
         else:
             a = parseSequence(line)
